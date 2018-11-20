@@ -1,0 +1,17 @@
+galaxy_info:
+  role_name: munin_node
+  author: hideaki kurita
+  description: munin_node
+
+  license: license (BSD, MIT)
+
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: FreeBSD 
+      versions:
+      - 11.2
+
+  galaxy_tags: []
+
+dependencies: []

@@ -1,0 +1,24 @@
+---
+- name: Install munin-node
+  pkgng: name={{ item }} state=present
+  with_items:
+    - munin-node
+
+- name: Copy munin plugins memory
+  copy: src=memory dest=/usr/local/share/munin/plugins/memory mode=0755
+
+- name: munin-node-configure
+  shell: >
+    /usr/local/sbin/munin-node-configure --shell | grep -v ntp | sh
+  args:
+    creates: /usr/local/etc/munin/plugins/cpu
+
+- name: Enable munin-node
+  service: name=munin-node enabled=yes
+
+- name: Start munin-node
+  service: name=munin-node state=started
+
+- name: Copy muni-node.conf
+  template: src=munin-node.conf dest=/usr/local/etc/munin/munin-node.conf
+  notify: restart munin-node
