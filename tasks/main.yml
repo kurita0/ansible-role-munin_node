@@ -4,9 +4,6 @@
   with_items:
     - munin-node
 
-- name: Copy munin plugins memory
-  copy: src=memory dest=/usr/local/share/munin/plugins/memory mode=0755
-
 - name: munin-node-configure
   shell: >
     /usr/local/sbin/munin-node-configure --shell | grep -v ntp | sh
